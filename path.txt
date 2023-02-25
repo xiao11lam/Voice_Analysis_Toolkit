@@ -1,0 +1,2 @@
+addpath("C:\Users\ABC\Desktop\Voice_Analysis_Toolkit") 
+addpath("C:\Users\ABC\Desktop\Voice_Analysis_Toolkit\speech_sample")

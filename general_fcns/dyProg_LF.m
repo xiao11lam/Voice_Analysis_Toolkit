@@ -1,4 +1,3 @@
-function [params,cost,best,Rd_n] = dyProg_LF(glot,fs,GCI,plots)
 
 % Function to fit LF models to glottal source pulses by using an exhaustive
 % search method and subsequent dynamic programming, using a similar
@@ -263,8 +262,6 @@ params.Rd=params.Rd(:)';
 
 %% Do plots 
 t=(1:length(glot))/fs;
-if nargin >3
-    if plots
         figure
         subplot(211), 
         stem(t(GCI),glot(GCI),'k'), legend('GCIs'), hold on
@@ -284,8 +281,6 @@ if nargin >3
         ylabel('Rd','FontSize',14)
         set(gca,'FontSize',12)
        % subplot(313), plot(GCI,params.OQ),xlim([0 length(glot)]), ylim([0 1])
-    end
-end
 
 function err = get_time_err(glot_seg,Ra,Rk,Rg,EE,F0,fs,start,finish,pulseLen,glot_seg_spec,MVF)
 
@@ -315,3 +310,5 @@ cor_freq=abs(cor_freq(2));
 err_freq=1-cor_freq;
 
 err=err_time+err_freq;
+
+end

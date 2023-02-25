@@ -1,10 +1,14 @@
-function test_Voice_Analysis_Toolkit(x,fs)
-
 % Function to apply the algorithms of the Voice Analysis Toolkit to an
 % inputted speech signal and plot the results.
 
 addpath(genpath(pwd));
+addpath("C:\Users\ABC\Desktop\Voice_Analysis_Toolkit\speech_sample")
+addpath("C:\Users\ABC\Desktop\Voice_Analysis_Toolkit\SE_VQ")
+addpath("C:\Users\ABC\Desktop\Voice_Analysis_Toolkit\peakSlope")
+addpath("C:\Users\ABC\Desktop\Voice_Analysis_Toolkit\MDQ")
+addpath("C:\Users\ABC\Desktop\Voice_Analysis_Toolkit\creak_fcns")
 
+[x,fs]=audioread('arctic_a0007.wav');
 %% Initial settings
 F0min=20;
 F0max=500;
@@ -50,7 +54,7 @@ GCI(VUV_inter(GCI)==0)=[];
 disp('Glottal inverse filtering using IAIF algorithm (Alku et al. 1992)')
 g_iaif=IAIF(x,fs,GCI);
 g_iaif=g_iaif/max(abs(g_iaif));
-
+glot = g_iaif;
 %% Derive peakSlope and glottal-peakSlope
 peakSlope = get_peakSlope(x,fs);
 peakSlope_g = get_peakSlope(g_iaif,fs);
@@ -84,4 +88,6 @@ stem(t(GCI),ones(1,length(GCI))*-.3,'k')
 plot(creak_t,creak_pp,'--m','LineWidth',2)
 legend('Speech waveform','GCIs','Creaky voice probability')
 drawnow
+
+
     
